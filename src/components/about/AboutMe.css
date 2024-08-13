@@ -1,0 +1,101 @@
+/* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Gothic', sans-serif;
+    background-color: black;
+    color: white;
+    overflow: auto;
+}
+
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    z-index: 50;
+}
+
+header .menu-btn {
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: relative;
+    z-index: 60;
+}
+
+/* Sidebar Menu */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -250px; /* Initially hide off-screen */
+    width: 250px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: transform 0.3s ease-in-out;
+    z-index: 40;
+}
+
+.sidebar.open {
+    transform: translateX(0); /* Slide in when open */
+}
+
+.sidebar .menu-btn-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s ease;
+    margin-top: 50px; /* Move menu options down */
+}
+
+.sidebar a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* About Me Section */
+.about-me {
+    padding-top: 6rem; /* Adjust padding for header */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about-me h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.about-me p {
+    margin-bottom: 1.25rem;
+    text-align: center;
+}
+
+.about-me img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Footer */
+footer {
+    background-color: black;
+    color: white;
+    padding: 1rem;
+}

@@ -7,8 +7,9 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.8);
     transition: right 0.3s ease; /* Add transition effect */
-    z-index: 99; /* Ensure it's above other elements */
+    z-index: 1000; /* Ensure it's above other elements */
     color: white;
+    border: 2px solid red;
 }
 
 .sidebar.open {
@@ -20,7 +21,7 @@
 }
 
 .toggle-button {
-    position: absolute;
+    position: fixed;
     top: 20px;
     right: 20px;
     font-size: 24px;
@@ -28,6 +29,7 @@
     background: none;
     border: none;
     color: white;
+    z-index: 1001;
 }
 
 .sidebar-content {
