@@ -11,7 +11,6 @@ function NoteForm() {
         const note = {
             title,
             content,
-            userId
         };
     
         try {
@@ -32,7 +31,6 @@ function NoteForm() {
     
             setTitle('');
             setContent('');
-            setUserId('');
             alert('Note submitted successfully!');
         } catch (error) {
             console.error('Error:', error);
@@ -60,17 +58,6 @@ function NoteForm() {
                     id="content"
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
-                    className="w-full p-2 bg-gray-700 border border-gray-600 rounded"
-                    required
-                />
-            </div>
-            <div className="mb-4">
-                <label className="block text-sm font-medium mb-1" htmlFor="userId">User ID</label>
-                <input
-                    type="text"
-                    id="userId"
-                    value={userId}
-                    onChange={(e) => setUserId(e.target.value)}
                     className="w-full p-2 bg-gray-700 border border-gray-600 rounded"
                     required
                 />
