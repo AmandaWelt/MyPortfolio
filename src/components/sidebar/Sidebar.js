@@ -16,8 +16,7 @@ function Sidebar() {
                 <div className="sidebar-content">
                     <ul>
                         <li><Link to="/home">Home</Link></li>
-                        <li><Link to="/aboutme">About</Link></li>
-                        <li><Link to="/projects">Projects</Link></li>
+                        <li><Link to="/aboutme">About Me</Link></li>
                     </ul>
                 </div>
             </div>

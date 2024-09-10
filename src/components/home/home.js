@@ -9,7 +9,6 @@ const Home = () => {
             <VideoBackground />
             <Sidebar />
             <h1>Home Page</h1>
-            <p> component pls render </p>
         </div>
     );
 };
