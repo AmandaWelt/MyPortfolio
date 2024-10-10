@@ -42,8 +42,28 @@ export const NotesProvider = ({ children }) => {
         }
     };
 
+    const updateNote = async (updatedNote) => {
+        try {
+            const response = await fetch(`http://localhost:3030/v1/notes/${updatedNote.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updatedNote),
+            });
+
+            const data = await response.json();
+
+            setNotes((prevNotes) =>
+                prevNotes.map((note) => (note.id === data.note.id ? data.note : note))
+            );
+        } catch (error) {
+            console.error('Error updating note:', error);
+        }
+    };
+
     return (
-        <NotesContext.Provider value={{ notes, addNote }}>
+        <NotesContext.Provider value={{ notes, addNote, updateNote }}>
             {children}
         </NotesContext.Provider>
     );
