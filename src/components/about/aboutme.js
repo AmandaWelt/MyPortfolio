@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Sidebar from '../sidebar/Sidebar'; 
 import './AboutMe.css';
 import Notes from './Notes';
 import NoteForm from './NoteForm';
+import { NotesContext } from '../../context/noteContext';
 
 function AboutMe() {
+    const { notes, addNote } = useContext(NotesContext);
+
     return (
         <div>
             <Sidebar /> 
@@ -24,8 +27,8 @@ function AboutMe() {
                     </div>
                 </div>
             </section>
-            <NoteForm />
-            <Notes />
+            <NoteForm  addNote={addNote} /> 
+            <Notes notes={notes} />
             <footer>
                 <div className="container mx-auto text-center">
                     <p>&copy; 2024 Amanda Welt - All Rights Reserved</p>

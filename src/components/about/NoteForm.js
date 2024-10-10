@@ -1,41 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { NotesContext } from '../../context/noteContext';
 
 function NoteForm() {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
-    const [userId, setUserId] = useState('');
+
+    const { addNote } = useContext(NotesContext);
 
     const handleSubmit = async (e) => {
-        e.preventDefault(); // Prevent the default form submission behavior
+        e.preventDefault(); 
     
         const note = {
             title,
             content,
         };
-    
-        try {
-            const res = await fetch('http://localhost:3030/v1/notes', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(note)
-            });
-    
-            if (!res.ok) {
-                const errorText = await res.text(); // Retrieve response text for debugging
-                console.error('Response Status:', res.status);
-                console.error('Response Body:', errorText);
-                throw new Error(`Network response was not ok: ${res.status} ${res.statusText}`);
-            }
-    
-            setTitle('');
-            setContent('');
-            alert('Note submitted successfully!');
-        } catch (error) {
-            console.error('Error:', error);
-            alert(`There was an error submitting your note: ${error.message}`);
-        }
+
+        // Using addNote function from context 
+        await addNote(note);
+        
+        setTitle('');
+        setContent('');
     };
 
     return (
@@ -73,3 +57,4 @@ function NoteForm() {
 }
 
 export default NoteForm;
+
