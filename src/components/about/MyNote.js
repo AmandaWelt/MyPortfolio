@@ -1,12 +1,14 @@
 import { useState, useContext } from "react";
 import { NotesContext } from "../../context/noteContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPencilAlt, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 function Note({ note }) {
     const [isEditMode, setIsEditMode] = useState(false);
     const [updatedTitle, setUpdatedTitle] = useState(note.title);
     const [updatedContent, setUpdatedContent] = useState(note.content);
 
-    const { updateNote } = useContext(NotesContext); // Correctly referencing updateNote function
+    const { updateNote, deleteNote } = useContext(NotesContext); // Correctly referencing updateNote function
 
     const handleEditClick = () => {
         setIsEditMode(true);
@@ -21,10 +23,17 @@ function Note({ note }) {
             content: updatedContent,
         };
 
-        // Call the updateNote function from context with the updated note data
+        //call the updateNote function
         await updateNote(updatedNoteData);
 
         setIsEditMode(false);
+    };
+
+    const handleDeleteClick = async () => {
+        const confirmDelete = window.confirm('Are you sure you\'d like to delete this note?');
+        if (confirmDelete) {
+            await deleteNote(note.id);
+        }
     };
 
     return (
@@ -67,7 +76,13 @@ function Note({ note }) {
                         onClick={handleEditClick}
                         className="mt-4 p-2 bg-gray-600 text-white rounded hover:bg-gray-700"
                     >
-                        <i className="fa fa-pencil"></i> {/* Pencil icon */}
+                        <FontAwesomeIcon icon={faPencilAlt} />
+                    </button>
+                    <button 
+                        onClick={handleDeleteClick}
+                        className="p-2 bg-red-600 text-white rounded hover:bg-red-700"
+                    >
+                        <FontAwesomeIcon icon={faTrashAlt} />
                     </button>
                 </div>
             )}

@@ -62,8 +62,20 @@ export const NotesProvider = ({ children }) => {
         }
     };
 
+    const deleteNote = async (id) => {
+        try {
+            await fetch(`http://localhost:3030/v1/notes/${id}`, {
+                method: 'DELETE',
+            });
+
+            setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id));
+        } catch (error) {
+            console.error('Error deleting note:', error);
+        }
+    };
+
     return (
-        <NotesContext.Provider value={{ notes, addNote, updateNote }}>
+        <NotesContext.Provider value={{ notes, addNote, updateNote, deleteNote }}>
             {children}
         </NotesContext.Provider>
     );
